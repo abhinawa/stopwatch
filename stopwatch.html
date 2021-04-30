@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        /* *{
+            width: 0em;
+            padding: 0em;
+            margin: 0em;
+            height: 0em;
+
+        } */
+        body{
+            text-align: center;
+            background:white;
+            justify-content: center;
+            align-items: center;
+          
+
+        }
+
+        .container{ 
+             text-align: center;
+             justify-content: center;
+            align-items: center;
+            color:grey;
+            background:#123456;
+
+            /* margin : 50%; */
+            margin: auto;
+            
+            height: 34rem;
+            width: 64rem;
+            
+
+        }
+        h1{
+            margin-top: 15px;
+            font-size: 64px;
+            justify-content: center;
+
+            text-align: center;
+        }
+        .btn{
+            justify-content: center;
+            align-items: center;
+            margin: 3em;
+            padding: 1em;
+            font-size: 15px;
+            font-family: sans-serif;
+            font-weight: bold;
+            /* background:lightseagreen; */
+            border-radius: 13px;
+            width: 100px;
+
+        } 
+       
+        .container2{
+            padding: 34px;
+            margin: 50px 50px;
+        }
+     
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="container2">
+             <h1>Stopwatch</h1>
+    <button class= "btn" id="start" >start</button>
+    <button class= "btn" id="stop">Stop</button>
+    <button class= "btn" id="reset" >Reset</button>
+
+        </div>
+        <h2 class="clock"></h2>
+
+
+   
+
+    </div>
+    <script>
+        let secondCount=0;
+        let stopWatch;
+
+        const displayPara= document.querySelector(".clock");
+
+        function displayCount(){
+            // calculate current hours ,min,sec;
+            let hours=Math.floor(secondCount/3600);
+            let minutes=Math.floor((secondCount%3600)/60);
+            let seconds=Math.floor(secondCount%60);
+
+            let displayHours = (hours<10)?'0'+hours:hours;
+            let displayMinutes=(minutes<10)?'0'+minutes:minutes;
+            let displaySeconds=(seconds<10)?'0'+seconds:seconds;
+            
+            displayPara.textContent = displayHours+ ': ' +displayMinutes+ ' :'+displaySeconds;
+
+            secondCount++;
+
+
+
+
+        }
+
+        const startBtn=document.querySelector('#start');
+        const stopBtn=document.querySelector('#stop');
+        const resetBtn=document.querySelector('#reset');
+
+        startBtn.addEventListener('click',()=>{
+            stopWatch=setInterval(displayCount,1000)
+            startBtn.disabled=true;
+
+
+        });
+        stopBtn.addEventListener('click',()=>{
+            clearInterval(stopWatch);
+            startBtn.disabled=false;
+
+        });
+        resetBtn.addEventListener('click',()=>{
+            clearInterval(stopWatch);
+            startBtn.disabled=false;
+            secondCount=0;
+            displayCount();
+
+
+        });
+        displayCount();
+
+    </script>
+   
+    
+</body>
+</html>
