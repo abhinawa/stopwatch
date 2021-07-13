@@ -1,1 +1,1 @@
-this is a stopwatch using HTML,CSS,JAVASCRIPT
+This is a stopwatch using HTML,CSS,JAVASCRIPT.
